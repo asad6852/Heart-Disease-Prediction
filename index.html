@@ -1,0 +1,202 @@
+<!-- Heart Disease Prediction App GUI -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Heart Disease Prediction</title>
+
+        <style>
+            h1 {
+                color: blue;
+            } /* CSS code for heading h1 */
+
+            /* CSS code for button */
+            .button_css {
+                color: #494949 !important;
+                text-transform: uppercase;
+                text-decoration: none;
+                background: #ffffff;
+                padding: 20px;
+                border: 4px solid #494949 !important;
+                display: inline-block;
+                transition: all 0.4s ease 0s;
+            }
+
+            .button_css:hover {
+                color: #ffffff !important;
+                background: #f6b93b;
+                border-color: #f6b93b !important;
+                transition: all 0.4s ease 0s;
+            }
+            
+
+.center {
+  margin-left: auto; 
+  margin-right: auto;
+}
+        </style>
+    </head>
+
+    <body>
+        <!-- Show Oxstandhard Univercity Banner-->
+    
+            <img src="static/images/heart.jpg" alt="Heart Disease" width="65%" height="80px" />
+        
+
+        <div>
+            <!-- Form Get input to predict HD-->
+           
+                <h1 style="padding-left: 200px;">*** Heart Disease Prediction ***</h1>
+                <form action="{{ url_for('predict')}}" method="post">
+        
+                    <table width="100%" border="0" cellpadding="5" cellspacing="0" class="center">
+                        <tbody>
+                            <tr class="">
+                                <td>Age</td>
+                                <td>
+                                    <input align="center" type="number" name="age" required="required" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Gender</td>
+                                <td><input type="radio" id="male" name="male" value="1" /> <label for="male">Male</label> <input type="radio" id="female" name="female" value="0" /> <label for="female">Female</label></td>
+                            </tr>
+
+                            <tr>
+                                <td>Chest Pain Type</td>
+                                <td>
+                                    <select name="cp" id="cp">
+                                        <option value="1">typical angina</option>
+                                        <option value="2">atypical angina</option>
+                                        <option value="3">non-anginal pain</option>
+                                        <option value="4">asymptomatic values</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Blood Pressure (In mmHg)</td>
+                                <td>
+                                    <input align="center" type="number" name="trestbps" required="required" size="10" />
+                                    <b>[Range: 60-200]</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Cholesterol (In mg/dl)</td>
+                                <td>
+                                    <input align="center" type="number" name="chol" required="required" size="10" />
+                                    <b>[Range: 120-600]</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Fasting Blood Sugar</td>
+                                <td>
+                                    <select name="fbs" id="fbs" width="48" height="10">
+                                        <option value="0">less than 120 mg/dl</option>
+                                        <option value="1">greater than 120 mg/dl</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Resting ECG</td>
+                                <td>
+                                    <select name="restecg" id="restecg">
+                                        <option value="0">normal</option>
+                                        <option value="1">ST-T wave abnormality value</option>
+                                        <option value="2">showing probable</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Maximum Heart Rate</td>
+                                <td>
+                                    <input align="center" type="number" name="thalach" required="required" size="10" />
+                                    <b>[Range: 60-200]</b>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Exercise Induced Angina</td>
+                                <td>
+                                    <select name="exang" id="exang" width="48" height="10">
+                                        <option value="0">no</option>
+                                        <option value="1">yes</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Old Peak</td>
+                                <td>
+                                    <input align="center" type="number step=0.01" name="oldpeak" required="required" />
+                                <b>[Range: 0-6.2]</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Slope</td>
+                                <td>
+                                    <select name="slope" id="slope">
+                                        <option value="1">up sloping</option>
+                                        <option value="2">flat</option>
+                                        <option value="3">down sloping</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Number of Vessels Colored</td>
+                                <td>
+                                    <select name="ca" id="ca" width="48" height="10">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Thal</td>
+                                <td>
+                                    <select name="thal" id="thal" width="48" height="10">
+                                        <option value="3">normal</option>
+                                        <option value="6">fixed defect</option>
+                                        <option value="7">reversible defect</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                 
+                    <!--<input  type="number" name="temp" placeholder="Temperature" required="required" width="48" height="10" />-->
+                    <!--<input  type="number" name="humidity" placeholder="Humidity" required="required" width="48" height="10" />-->
+                    <!--<input  type="number" name="perception" placeholder="Perception" required="required" width="48" height="10" /> -->
+                    <!-- <input  type="number" name="pulse" placeholder="Pulse rate" required="required" width="48" height="10" />    -->
+
+                    <br />
+
+                    <br />
+
+                    <!-- Show button -->
+                    <div class="button_cont"  style="padding-left: 300px;">
+                        <a
+                            class="button_css"
+                            href="https://www.mayoclinic.org/diseases-conditions/heart-disease/symptoms-causes/syc-20353118#:~:text=Heart%20diseases%20include%3A,Heart%20valve%20disease"
+                            target="_blank"
+                            rel="nofollow noopener"
+                        >
+                            <button type="submit" class="btn btn-primary btn-block btn-large"><strong>Predict</strong></button>
+                        </a>
+                    </div>
+                </form>
+            
+
+            <!-- Show predicted output using ML model -->
+            <div>
+                <center>
+                    <h2>{{ prediction_text }}</h2>
+                </center>
+            </div>
+        </div>
+    </body>
+</html>

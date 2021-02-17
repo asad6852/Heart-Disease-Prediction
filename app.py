@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import numpy as np
 import pandas as pd
 from flask import Flask, request, render_template
@@ -36,11 +34,10 @@ def predict():
 
  #   return render_template('index.html', prediction_text='You will get [{}%] marks, when you do study [{}] hours per day '.format(output, int(features_value[0])))
     if output == 0:
-        res_Val="No Heart Disease"
+        res_Val="no heart disease"
     else:
-        res_Val="Heart Disease"
+        res_Val="heart disease"
     return render_template('index.html', prediction_text='You have {}'.format(res_Val)) 
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
-    
